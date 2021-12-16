@@ -11,20 +11,19 @@ import com.bumptech.glide.Glide
 import com.zebhi.githubuser.adapter.SectionsPagerAdapter
 import com.zebhi.githubuser.databinding.ActivityUserDetailBinding
 import com.zebhi.githubuser.model.User
-import com.zebhi.githubuser.presenter.UsersPresenterImpl
+import com.zebhi.githubuser.presenter.UserPresenterImpl
 import com.zebhi.githubuser.room.UsersDAO
 import com.zebhi.githubuser.room.UsersDatabase
 import com.zebhi.githubuser.room.table.UsersEntity
-import com.zebhi.githubuser.ui.users.UsersViewInterface
+import com.zebhi.githubuser.ui.users.UserViewInterface
 
-class ActivityUserDetail(private var username: String) : AppCompatActivity(), UsersViewInterface {
+class ActivityUserDetail : AppCompatActivity(), UserViewInterface {
 
     private lateinit var binding: ActivityUserDetailBinding
     private lateinit var usersDao: UsersDAO
     private lateinit var users: User
 
-    private var usersList: List<User> = arrayListOf()
-    private var presenter = UsersPresenterImpl(this)
+    private var presenter = UserPresenterImpl(this)
 
     companion object {
         const val EXTRA_USERS = "extra_users"
@@ -38,26 +37,29 @@ class ActivityUserDetail(private var username: String) : AppCompatActivity(), Us
         }
     }
 
-    override fun success(data: List<User>?) {
+    override fun success(data: User?) {
         if (data != null) {
-            usersList = data
+            users = data
         }
 
-        binding.tvDetailName.text = users.name.toString()
-        binding.tvDetailCompany.text = users.company.toString()
-        binding.tvDetailLocation.text = users.location.toString()
-        binding.tvDetailRepos.text = users.public_repos.toString()
-        binding.tvDetailFollowers.text = users.followers.toString()
-        binding.tvDetailFollowing.text = users.following.toString()
+        users.let {
+            binding.tvDetailName.text = users.name.toString()
+            binding.tvDetailUsername.text = users.login.toString()
+            binding.tvDetailCompany.text = users.company.toString()
+            binding.tvDetailLocation.text = users.location.toString()
+            binding.tvDetailRepos.text = users.public_repos.toString()
+            binding.tvDetailFollowers.text = users.followers.toString()
+            binding.tvDetailFollowing.text = users.following.toString()
 
-        val avatarUrl: String = users.avatar_url.toString()
+            val avatarUrl: String = users.avatar_url.toString()
 
-        Glide.with(this)
-            .load(avatarUrl)
-            .centerCrop()
-            .into(binding.ivDetailAvatar)
+            Glide.with(this)
+                .load(avatarUrl)
+                .centerCrop()
+                .into(binding.ivDetailAvatar)
+        }
 
-        Toast.makeText(this, "Total Data : ${data?.size}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Anda melihat data : ${data?.name}", Toast.LENGTH_SHORT).show()
     }
 
     override fun error(message: String) {
@@ -72,16 +74,13 @@ class ActivityUserDetail(private var username: String) : AppCompatActivity(), Us
 
         usersDao = UsersDatabase.getInstance(this)?.usersDao()!!
 
-//        username = this.arguments?.getString(EXTRA_USERS).toString()
+        intent.getStringExtra(EXTRA_USERS)?.let { username ->
+            presenter.getDetailData(username)
+            binding.viewPager.adapter =
+                SectionsPagerAdapter(supportFragmentManager, this, username)
+            binding.tabs.setupWithViewPager(binding.viewPager, true)
 
-//        username = intent.getParcelableExtra(EXTRA_USERS)!!
-
-//        val usernames = users.login.toString()
-
-        presenter.getDetailData(username)
-
-        binding.viewPager.adapter = SectionsPagerAdapter(supportFragmentManager, this, username)
-        binding.tabs.setupWithViewPager(binding.viewPager, true)
+        }
 
         refreshFavorite()
     }
@@ -110,25 +109,30 @@ class ActivityUserDetail(private var username: String) : AppCompatActivity(), Us
     }
 
     fun favoriteClick(view: View) {
-        if (view.id == R.id.add_to_favorite) {
-            if (!isFavorite) {
-                usersDao.insertUserFavorite(UsersEntity.entity(users))
-            } else {
-                usersDao.deleteUser(users.id)
+        UsersDatabase.getInstance(this)?.usersDao().let { usersDao ->
+            if (view == binding.addToFavorite) {
+                if (isFavorite) {
+                    usersDao?.insertUserFavorite(UsersEntity.entity(users))
+                }
+                else {
+                    usersDao?.deleteUserFav(UsersEntity())
+                }
+                refreshFavorite()
             }
-            refreshFavorite()
         }
     }
 
     private var isFavorite: Boolean = false
 
     private fun refreshFavorite() {
-        isFavorite = if (usersDao.getUser(users.id) != null) {
-            binding.addToFavorite.setImageResource(R.drawable.ic_favorite_full)
-            true
-        } else {
-            binding.addToFavorite.setImageResource(R.drawable.ic_favorite_border)
-            false
+        UsersDatabase.getInstance(this)?.usersDao().let { usersDao ->
+            isFavorite = if (usersDao != null) {
+                binding.addToFavorite.setImageResource(R.drawable.ic_favorite_full)
+                true
+            } else {
+                binding.addToFavorite.setImageResource(R.drawable.ic_favorite_border)
+                false
+            }
         }
     }
 

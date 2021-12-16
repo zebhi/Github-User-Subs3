@@ -1,8 +1,8 @@
 <resources>
 
     <!-- Base application theme. -->
-<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
+<!--    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">-->
+    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight">
     <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
@@ -11,4 +11,14 @@
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
+<!--    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Primary brand color. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/dark_grey</item>-->
+<!--        <item name="colorPrimaryVariant">@color/dark_green</item>-->
+<!--        <item name="colorOnPrimary">@color/white</item>-->
+<!--        &lt;!&ndash; Status bar color. &ndash;&gt;-->
+<!--        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="tabBackground">@color/dark_green</item>-->
+<!--    </style>-->
 </resources>

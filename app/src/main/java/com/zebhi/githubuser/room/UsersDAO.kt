@@ -11,14 +11,14 @@ import com.zebhi.githubuser.room.table.UsersEntity
 @Dao
 interface UsersDAO {
 
-    @Query("SELECT * FROM users_table")
+    @Query("SELECT * FROM users_table ORDER BY id ASC")
     fun getAllUsers(): List<UsersEntity>
 
     @Query("SELECT * FROM users_table WHERE id = :id LIMIT 1")
     fun getUser(id: Int?): UsersEntity
 
-    @Query("DELETE FROM users_table WHERE id = :id")
-    fun deleteUser(id: Int?): Int
+//    @Query("DELETE FROM users_table WHERE id = :id")
+//    fun deleteUser(id: Int?): UsersEntity
 
     @Insert(onConflict = REPLACE)
     fun insertUserFavorite(usersEntity: UsersEntity): Long

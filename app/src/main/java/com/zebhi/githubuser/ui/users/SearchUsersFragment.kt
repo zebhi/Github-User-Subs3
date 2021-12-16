@@ -81,9 +81,7 @@ class SearchUsersFragment : Fragment(), UsersViewInterface, AdapterUsers.OnUsers
 
     override fun onItemClick(list: List<User>, position: Int) {
 
-        val username = User(
-            login = list[position].login
-        )
+        val username = list[position].login
 
         val usersIntent = Intent(context, ActivityUserDetail::class.java)
         usersIntent.putExtra(ActivityUserDetail.EXTRA_USERS, username)

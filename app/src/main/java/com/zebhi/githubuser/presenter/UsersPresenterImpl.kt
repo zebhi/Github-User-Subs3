@@ -30,27 +30,6 @@ class UsersPresenterImpl(private val view: UsersViewInterface) : UsersPresenter 
     }
 
     @SuppressLint("CheckResult")
-    override fun getDetailData(username: String) {
-        view.loading(isloading = true)
-        ApiCall.instance().getDetailData(username)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeOn(Schedulers.io())
-            .subscribe(
-                {
-                    view.loading(false)
-                    if (it.isNotEmpty()) {
-                        view.success(it)
-                    } else {
-                        view.error("Data not available")
-                    }
-                }, {
-                    view.loading(false)
-                    view.error(it.message!!)
-                }
-            )
-    }
-
-    @SuppressLint("CheckResult")
     override fun getFollowersData(username: String) {
         view.loading(isloading = true)
         ApiCall.instance().getFollowersData(username)

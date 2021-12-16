@@ -68,7 +68,7 @@
                     android:text="Username"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/tv_detail_name" />
 
@@ -80,7 +80,7 @@
                     android:text="Company"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
                     app:layout_constraintTop_toBottomOf="@+id/tv_detail_username" />
 
@@ -92,17 +92,18 @@
                     android:text="Location"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
-                    android:textSize="20sp"
+                    android:textSize="16sp"
                     android:textStyle="bold"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_company" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_company"
+                    tools:layout_editor_absoluteX="0dp" />
 
                 <TextView
-                    android:id="@+id/tv_detail_following"
+                    android:id="@+id/tv_title_following"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="8dp"
-                    android:text="Total Following"
+                    android:text="Following: "
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
@@ -110,18 +111,61 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_detail_location" />
 
+
                 <TextView
-                    android:id="@+id/tv_detail_followers"
+                    android:id="@+id/tv_detail_following"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
                     android:layout_marginTop="8dp"
-                    android:text="Total Followers"
+                    android:text="Nilai"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_detail_repos"
+                    app:layout_constraintStart_toEndOf="@+id/tv_title_following"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_location" />
+
+                <TextView
+                    android:id="@+id/tv_title_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Followers: "
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/tv_detail_following"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_location" />
+
+                <TextView
+                    android:id="@+id/tv_detail_followers"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Nilai"
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/tv_title_followers"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_detail_location" />
+
+                <TextView
+                    android:id="@+id/tv_title_repos"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="Public Repos: "
+                    android:textAlignment="center"
+                    android:textColor="#FFFFFF"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/tv_detail_followers"
                     app:layout_constraintTop_toBottomOf="@+id/tv_detail_location" />
 
                 <TextView
@@ -129,13 +173,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:layout_marginEnd="16dp"
-                    android:text="Public Repos"
+                    android:layout_marginStart="8dp"
+                    android:text="Nilai"
                     android:textAlignment="center"
                     android:textColor="#FFFFFF"
                     android:textSize="14sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/tv_title_repos"
                     app:layout_constraintTop_toBottomOf="@+id/tv_detail_location" />
 
                 <TextView

@@ -31,5 +31,5 @@ object ApiCall {
             .build()
     }
 
-    fun instance(): ApiInterface = retrofit()!!.create<ApiInterface>(ApiInterface::class.java)
+    fun instance(): ApiInterface = retrofit()!!.create(ApiInterface::class.java)
 }

@@ -8,6 +8,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Zebhi/AndroidStudioProjects/GithubUser/app/src/main/res/layout/activity_main.xml" value="0.19722222222222222" />
         <entry key="..\:/Users/Zebhi/AndroidStudioProjects/GithubUser/app/src/main/res/layout/activity_settings.xml" value="0.2967313585291113" />
         <entry key="..\:/Users/Zebhi/AndroidStudioProjects/GithubUser/app/src/main/res/layout/activity_user_detail.xml" value="0.3026041666666667" />
         <entry key="..\:/Users/Zebhi/AndroidStudioProjects/GithubUser/app/src/main/res/layout/fragment_list_users.xml" value="0.33" />

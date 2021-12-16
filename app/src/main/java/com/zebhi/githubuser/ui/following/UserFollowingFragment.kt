@@ -49,7 +49,7 @@ class UserFollowingFragment(private var username: String) : Fragment(), UsersVie
         }
         binding.rvFollowing.setHasFixedSize(true)
 
-        Toast.makeText(context, "Total Data : ${data?.size}", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Total Data Following: ${data?.size}", Toast.LENGTH_SHORT).show()
     }
 
     override fun error(message: String) {
@@ -74,9 +74,7 @@ class UserFollowingFragment(private var username: String) : Fragment(), UsersVie
 
     override fun onItemClick(list: List<User>, position: Int) {
 
-        val users = User(
-            login = list[position].login
-        )
+        val users = list[position].login
 
         val usersIntent = Intent(context, ActivityUserDetail::class.java)
         usersIntent.putExtra(ActivityUserDetail.EXTRA_USERS, users)

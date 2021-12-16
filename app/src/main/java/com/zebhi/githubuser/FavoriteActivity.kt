@@ -65,15 +65,11 @@ class FavoriteActivity : AppCompatActivity(), AdapterFavoriteUsers.OnUsersClickL
     }
 
     override fun onItemClick(list: List<UsersEntity>, position: Int) {
-        val users = UsersEntity(
-            id = list[position].id,
-            login = list[position].login,
-            avatar_url = list[position].avatar_url,
-            html_url = list[position].html_url
-        )
 
-        val usersIntent = Intent(this, ActivityFavoriteUserDetail::class.java)
-        usersIntent.putExtra(ActivityFavoriteUserDetail.EXTRA_USERS, users)
+        val users = list[position].login
+
+        val usersIntent = Intent(this, ActivityUserDetail::class.java)
+        usersIntent.putExtra(ActivityUserDetail.EXTRA_USERS, users)
         startActivity(usersIntent)
     }
 }

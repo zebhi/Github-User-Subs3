@@ -17,7 +17,7 @@ interface ApiInterface {
     @GET("users/{login}")
     fun getDetailData (
         @Path("login") username: String
-    ): Observable<List<User>>
+    ): Observable<User>
 
     @GET("users/{login}/followers")
     fun getFollowersData(
